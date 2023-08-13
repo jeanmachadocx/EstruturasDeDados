@@ -1,0 +1,22 @@
+using System;
+
+namespace Exercicio3
+{
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            int numerador = 4, denominador = 3;
+            Console.WriteLine("Repetições:");
+            int vezes = int.Parse(Console.ReadLine());
+
+            for(int i = 0; i< vezes; i++)
+            {
+                Console.WriteLine(numerador + " / " + denominador);
+                numerador = numerador * (-1);
+                denominador+=2;
+            }
+            Console.ReadKey();
+        }
+    }
+}
