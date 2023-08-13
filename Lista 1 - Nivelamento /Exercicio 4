@@ -1,0 +1,211 @@
+using System;
+
+
+namespace Exercicio4
+{
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            int[] vetorX = new int[5];
+            int[] vetorY = new int[5];
+
+            Console.WriteLine("Digite 5 números diferentes para o primeiro vetor");
+            lerVetor(vetorX);
+
+            Console.WriteLine("Digite 5 números diferentes para o segundo vetor");
+            lerVetor(vetorY);
+
+            Console.WriteLine("Primeiro Vetor: ");
+            printarVetor(vetorX);
+
+            Console.WriteLine("Segundo Vetor: ");
+            printarVetor(vetorY);
+            Console.WriteLine();
+
+            Console.WriteLine("Soma dos Vetores: ");
+            soma(vetorX, vetorY);
+
+            Console.WriteLine("Diferença dos Vetores: ");
+            diferenca(vetorX, vetorY);
+
+            Console.WriteLine("Produto dos Vetores: ");
+            produto(vetorX, vetorY);
+
+            Console.WriteLine("Interseção dos Vetores: ");
+            intersecao(vetorX, vetorY);
+
+            Console.WriteLine("União dos Vetores: ");
+            uniao(vetorX, vetorY);
+
+            Console.ReadKey();
+
+        }
+
+        public static void lerVetor(int[] vetor)
+        {
+            for (int i = 0; i < vetor.Length; i++)
+            {
+                int numero; //num digitado
+                bool numValido = false; //ver se o num é repetido
+
+                while (!numValido)
+                {
+                    Console.WriteLine("Digite o número para a posição: " + i);
+
+                    if (int.TryParse(Console.ReadLine(), out numero))
+                    {
+                        //valida se o num digitado ja existe
+                        if (!Array.Exists(vetor, element => element == numero))
+                        {
+                            vetor[i] = numero;
+                            numValido = true;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Número repetido");
+                        }
+                    }
+
+                }
+            }
+        }
+
+        public static void printarVetor(int[] vetor)
+        {
+            foreach (int i in vetor)
+            {
+                Console.Write(i + " ");
+            }
+            Console.WriteLine();
+        }
+
+        public static void soma(int[] vetorX, int[] vetorY)
+        {
+            int[] vetorsoma = new int[5];
+
+            for (int i = 0; i < vetorsoma.Length; i++)
+            {
+                vetorsoma[i] += vetorX[i] + vetorY[i];
+            }
+
+            for (int i = 0; i < vetorsoma.Length; i++)
+            {
+                Console.Write(vetorsoma[i] + " ");
+            }
+            Console.WriteLine();
+        }
+
+        public static void diferenca(int[] vetorX, int[] vetorY)
+        {
+            int[] vetor = new int[5];
+
+            for (int i = 0; i < vetor.Length; i++)
+            {
+                vetor[i] = vetorX[i] - vetorY[i];
+            }
+
+            for (int i = 0; i < vetor.Length; i++)
+            {
+                Console.Write(vetor[i] + " ");
+            }
+            Console.WriteLine();
+        }
+
+        public static void produto(int[] vetorX, int[] vetorY)
+        {
+            int[] vetor = new int[5];
+
+            for (int i = 0; i < vetor.Length; i++)
+            {
+                vetor[i] = vetorX[i] * vetorY[i];
+            }
+
+            for (int i = 0; i < vetor.Length; i++)
+            {
+                Console.Write(vetor[i] + " ");
+            }
+            Console.WriteLine();
+        }
+
+        public static void intersecao(int[] vetorX, int[] vetorY)
+        {
+            double[] vetorIntercessao = new double[10];
+            int[] uniao = new int[10];
+
+
+            int contador = 0;
+            for (int i = 0; i < vetorX.Length; i++)
+            {
+                for (int j = 0; j < vetorY.Length; j++)
+                {
+                    if (vetorX[i] == vetorY[j])
+                    {
+                        vetorIntercessao[contador] = vetorX[i];
+                        contador++;
+                    }
+
+                }
+            }
+
+            Console.WriteLine("Intercessão:  ");
+            for (int k = 0; k < contador; k++)
+            {
+                Console.Write(vetorIntercessao[k] + " ");
+            }
+            Console.WriteLine();
+
+        }
+
+        public static void uniao(int[] vetorX, int[] vetorY)
+        {
+            int[] uniao = new int[vetorX.Length + vetorY.Length]; // Tamanho pode ser no máximo a soma dos tamanhos
+            int contador = 0;
+
+            for (int i = 0; i < vetorX.Length; i++)
+            {
+                bool elementoJaExiste = false;
+                for (int k = 0; k < contador; k++)
+                {
+                    if (uniao[k] == vetorX[i])
+                    {
+                        elementoJaExiste = true;
+                        break;
+                    }
+                }
+                if (!elementoJaExiste)
+                {
+                    uniao[contador] = vetorX[i];
+                    contador++;
+                }
+            }
+
+      
+            for (int j = 0; j < vetorY.Length; j++)
+            {
+                bool elementoJaExiste = false;
+                for (int k = 0; k < contador; k++)
+                {
+                    if (uniao[k] == vetorY[j])
+                    {
+                        elementoJaExiste = true;
+                        break;
+                    }
+                }
+                if (!elementoJaExiste)
+                {
+                    uniao[contador] = vetorY[j];
+                    contador++;
+                }
+            }
+            Console.WriteLine("União: ");
+            for (int k = 0; k < contador; k++)
+            {
+                Console.Write(uniao[k] + " ");
+            }
+        }
+    }
+}
+
+
+
