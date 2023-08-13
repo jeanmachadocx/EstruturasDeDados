@@ -1,0 +1,43 @@
+using System;
+
+
+namespace Exercicio2
+{
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            Console.WriteLine("Informe uma sequência de números:");
+            Console.WriteLine("Tecle: -1 para sair");
+            int num;
+            int tamanhoAtual = 1, maiorTamanho = 1;
+            int ultimoNumero = int.MaxValue;
+            while (true)
+            {
+                if (int.TryParse(Console.ReadLine(), out num))
+                {
+                    if (num == -1)
+                    {
+                        break;
+                    }
+                    if(num > ultimoNumero)
+                    {
+                        tamanhoAtual++;
+                    }
+                    else
+                    {
+                        tamanhoAtual = 1;
+                    }
+                    maiorTamanho = Math.Max(maiorTamanho, tamanhoAtual);
+                    ultimoNumero = num;
+                }
+                else
+                {
+                    Console.WriteLine("Valor inválido. Digite um número inteiro positivo ou -1 para terminar a sequência.");
+                }
+            }
+            Console.WriteLine("O tamanho da sequência crescente é: " + maiorTamanho);
+            Console.Read();
+        }
+    }
+}
