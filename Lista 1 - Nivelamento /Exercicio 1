@@ -1,0 +1,119 @@
+using System;
+
+
+namespace Exercicio1
+{
+    public class Program
+    {
+
+        public static double[,] gerarMatriz(double[,] matriz)
+        {
+
+            Random rd = new Random();
+
+            for (int linha = 0; linha < matriz.GetLength(0); linha++)
+            {
+                for (int coluna = 0; coluna < matriz.GetLength(1); coluna++)
+                {
+                    matriz[linha, coluna] = rd.Next(10000, 50000);
+                }
+            }
+
+            return matriz;
+        }
+
+        public static void imprimirMatriz(double[,] matriz)
+        {
+            Console.WriteLine("Matriz de Vendas:");
+
+            for (int linha = 0; linha< matriz.GetLength(0); linha++)
+            {
+                for (int coluna = 0; coluna < matriz.GetLength(1); coluna++)
+                {
+                    Console.Write(matriz[linha, coluna] + " ");
+                }
+                Console.WriteLine();
+            }
+        }
+
+        public static void totalMensal(double[,] matriz)
+        {
+            Console.WriteLine();
+
+            for (int linha = 0; linha < matriz.GetLength(0); linha++)
+            {
+                double totalMes = 0;
+
+                for (int coluna = 0; coluna < matriz.GetLength(1); coluna++)
+                {
+                    totalMes += matriz[linha, coluna];
+                }
+                Console.WriteLine("Total vendido no mês " + (linha +1) + ": R$ " + totalMes);
+            }
+
+        }
+
+        public static void buscarMelhorSemana(double[,] matriz)
+        {
+            Console.WriteLine();
+
+            double maisVenda = 0;
+            int contSemana = 0;
+
+            for (int linha = 0; linha< matriz.GetLength(0); linha++)
+            {
+                double total = 0;
+
+                for (int coluna = 0; coluna < matriz.GetLength(1); coluna++)
+                {
+                    total += matriz[linha, coluna];
+                }
+                if(total > maisVenda)
+                {
+                    maisVenda = total;
+                    contSemana = linha+ 1;
+                }
+            }
+            Console.WriteLine("A melhor semana é: " + contSemana + " semana");
+        }
+
+       
+
+        public static void totalAnual(double[,] matriz)
+        {
+            double soma = 0;
+
+            for (int linha = 0; linha < matriz.GetLength(0); linha++)
+            {
+                for (int coluna = 0; coluna < matriz.GetLength(1); coluna++)
+                {
+                    soma += matriz[linha, coluna];
+                }
+            }
+
+            Console.WriteLine("Total vendido no ano: " + soma);
+             
+        }
+
+       
+
+
+        public static void Main(string[] args)
+        {
+            double[,] matriz = new double[12, 4];
+            gerarMatriz(matriz);
+
+            imprimirMatriz(matriz);
+
+            totalMensal(matriz);
+
+            totalAnual(matriz);
+
+            buscarMelhorSemana(matriz);
+          
+            Console.ReadKey();
+        }
+
+       
+    }
+}
