@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace ConsoleApp1
+namespace Exercicio3    
 {
     public class Program
     {
